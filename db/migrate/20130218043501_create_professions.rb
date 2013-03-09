@@ -6,7 +6,7 @@ class CreateProfessions < ActiveRecord::Migration
       t.timestamps
     end
 
-    %w( 演员 导演 制片人 编剧 ).each do |name|
+    %w( 监制 导演 制片人 编剧 摄影 美术 副导演 剪辑 主要演员 演员 ).each do |name|
       Profession.create! :name => name
     end
   end

@@ -14,7 +14,7 @@ class CreateMovies < ActiveRecord::Migration
       ## 片种
       t.integer     :category_id
 
-      ## 审批文号
+      ## 通过令文号
       t.string       :auditing_file
 
       ## 所属年代
@@ -31,9 +31,10 @@ class CreateMovies < ActiveRecord::Migration
       t.integer     :format_id
       t.integer     :picture_id
 
-      ## 影片介绍
+      ## 故事梗概
       t.text        :plot_summary
       t.string      :theme
+      # 附注
       t.text        :note
 
       t.timestamps
