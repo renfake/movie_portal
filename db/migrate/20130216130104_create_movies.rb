@@ -33,10 +33,13 @@ class CreateMovies < ActiveRecord::Migration
 
       ## 故事梗概
       t.text        :plot_summary
-      t.string      :theme
-      # 附注
+      ## 导演阐述
+      t.text        :director_statement
+      ## 附注
       t.text        :note
 
+      t.integer     :created_by
+      t.integer     :updated_by
       t.timestamps
     end
   end
