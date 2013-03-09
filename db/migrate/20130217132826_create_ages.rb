@@ -1,3 +1,4 @@
+# coding: utf-8
 class CreateAges < ActiveRecord::Migration
   def change
     create_table :ages do |t|

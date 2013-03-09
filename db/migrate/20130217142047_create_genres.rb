@@ -1,3 +1,4 @@
+# coding: utf-8
 class CreateGenres < ActiveRecord::Migration
   def change
     create_table :genres do |t|

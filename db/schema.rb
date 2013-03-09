@@ -11,7 +11,108 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130215035618) do
+ActiveRecord::Schema.define(:version => 20130223010252) do
+
+  create_table "ages", :force => true do |t|
+    t.string   "content",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "characters", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "movie_id"
+    t.text     "biography"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "companies", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "countries", :force => true do |t|
+    t.string   "name",       :null => false
+    t.string   "code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "genres", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "movies", :force => true do |t|
+    t.string   "name",            :null => false
+    t.string   "country"
+    t.date     "production_date"
+    t.integer  "category_id"
+    t.string   "auditing_file"
+    t.integer  "age_id"
+    t.text     "age_note"
+    t.integer  "runtime"
+    t.integer  "color_id"
+    t.integer  "format_id"
+    t.integer  "picture_id"
+    t.text     "plot_summary"
+    t.string   "theme"
+    t.text     "note"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "movies_companies", :id => false, :force => true do |t|
+    t.integer "movie_id",   :null => false
+    t.integer "company_id", :null => false
+    t.integer "duty",       :null => false
+  end
+
+  create_table "movies_genres", :id => false, :force => true do |t|
+    t.integer "movie_id", :null => false
+    t.integer "genre_id", :null => false
+  end
+
+  create_table "movies_people", :id => false, :force => true do |t|
+    t.integer "movie_id",           :null => false
+    t.integer "person_id",          :null => false
+    t.string  "profession",         :null => false
+    t.string  "profession_content"
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "name",       :null => false
+    t.date     "birthday"
+    t.text     "bio"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "people_professions", :id => false, :force => true do |t|
+    t.integer "person_id",     :null => false
+    t.integer "profession_id", :null => false
+  end
+
+  create_table "professions", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

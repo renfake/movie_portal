@@ -9,13 +9,28 @@
   <%= stylesheet_link_tag "/css/fullcalendar.css" %>
   <%= stylesheet_link_tag "/css/unicorn.main.css" %>
   <%= stylesheet_link_tag "/css/unicorn.grey.css" %>
+
+  <style>
+      body {
+          font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 14px;
+          line-height: 20px;
+          color: #333;
+      }
+
+      .table th {
+          font-weight: normal;
+          font-size: 16px;
+      }
+  </style>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 
-<div id="header">
-  <h1><a href="./dashboard.html">电影编排系统</a></h1>
+<div id="header" style="height: 90px;">
+  <!--<h1><a href="./dashboard.html">电影编排系统</a></h1>-->
 </div>
 
 <%= render :partial => 'shared/user_nav' %>
@@ -28,5 +43,20 @@
 <%= javascript_include_tag "/js/excanvas.min" %>
 <%= javascript_include_tag "application" %>
 <%= javascript_include_tag "/js/unicorn.js" %>
+
+<script type="text/javascript">
+
+    function toggle_menu(menu_id) {
+        if (menu_id != '') {
+            $("#" + menu_id).addClass('active');
+        }
+    }
+
+    //<![CDATA[
+    $(function () {
+        toggle_menu('<%= @current_main_nav %>');
+    });
+    //]]>
+</script>
 </body>
 </html>

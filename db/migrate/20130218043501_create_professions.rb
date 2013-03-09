@@ -1,3 +1,4 @@
+# coding: utf-8
 class CreateProfessions < ActiveRecord::Migration
   def change
     create_table :professions do |t|

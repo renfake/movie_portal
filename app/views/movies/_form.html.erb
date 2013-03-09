@@ -1,0 +1,15 @@
+<fieldset>
+  <div class="control-group">
+    <%= form.label :name, '片名', :class => 'control-label' %>
+    <div class="controls">
+      <%= form.text_field :name, :class => 'input-large' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= form.label :category_id, '影片种类', :class => 'control-label' %>
+    <div class="controls">
+      <%= form.select :category_id, Category.all.collect { |c| [c.name, c.id] } %>
+    </div>
+  </div>
+</fieldset>
