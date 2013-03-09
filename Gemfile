@@ -39,6 +39,8 @@ gem 'debugger'
 
 # Auth
 gem 'devise'
+gem 'simple_roles'
+gem 'cancan'
 
 
 gem 'acts-as-taggable-on', '~> 2.3.1'

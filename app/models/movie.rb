@@ -28,6 +28,11 @@ class Movie < ActiveRecord::Base
   has_many   :actors,               :class_name => 'Person', :through => 'movies_people',
              :conditions => ["profession = ? or profession =?", '演员', '主要演员']
 
+  has_many   :broadcasts
+
+  belongs_to :creator, :class_name => 'User', :foreign_key => 'created_by'
+  belongs_to :updator, :class_name => 'User', :foreign_key => 'updated_by'
+
   attr_accessible :name, :country, :production_date, :category_id, :auditing_file, :age_id, :age_note, :runtime,
                   :color_id, :format_id, :picture_id, :plot_summary, :director_statement, :note, :created_by, :updated_by
 end
