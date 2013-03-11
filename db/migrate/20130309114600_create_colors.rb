@@ -6,7 +6,7 @@ class CreateColors < ActiveRecord::Migration
       t.timestamps
     end
 
-    %w( '彩色'  '黑白').each do |color|
+    %w( 彩色  黑白 ).each do |color|
       Color.create! :name=>color
     end
   end

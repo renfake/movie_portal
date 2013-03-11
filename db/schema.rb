@@ -11,12 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130223010252) do
+ActiveRecord::Schema.define(:version => 20130309133738) do
 
   create_table "ages", :force => true do |t|
     t.string   "content",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "broadcasts", :force => true do |t|
+    t.integer  "week",                                                             :null => false
+    t.date     "date",                                                             :null => false
+    t.time     "start_time",                                                       :null => false
+    t.integer  "movie_id",                                                         :null => false
+    t.decimal  "audience_rating", :precision => 5, :scale => 2,                    :null => false
+    t.decimal  "audience_share",  :precision => 5, :scale => 2,                    :null => false
+    t.integer  "audience_number",                                                  :null => false
+    t.integer  "time_bucket"
+    t.boolean  "premiere",                                      :default => false
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -29,6 +45,12 @@ ActiveRecord::Schema.define(:version => 20130223010252) do
     t.string   "name",       :null => false
     t.integer  "movie_id"
     t.text     "biography"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "colors", :force => true do |t|
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -46,8 +68,21 @@ ActiveRecord::Schema.define(:version => 20130223010252) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "formats", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "genres", :force => true do |t|
     t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "issues", :force => true do |t|
+    t.string   "name",       :null => false
+    t.text     "desc"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -59,7 +94,7 @@ ActiveRecord::Schema.define(:version => 20130223010252) do
   end
 
   create_table "movies", :force => true do |t|
-    t.string   "name",            :null => false
+    t.string   "name",               :null => false
     t.string   "country"
     t.date     "production_date"
     t.integer  "category_id"
@@ -71,10 +106,12 @@ ActiveRecord::Schema.define(:version => 20130223010252) do
     t.integer  "format_id"
     t.integer  "picture_id"
     t.text     "plot_summary"
-    t.string   "theme"
+    t.text     "director_statement"
     t.text     "note"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "movies_companies", :id => false, :force => true do |t|
@@ -86,6 +123,11 @@ ActiveRecord::Schema.define(:version => 20130223010252) do
   create_table "movies_genres", :id => false, :force => true do |t|
     t.integer "movie_id", :null => false
     t.integer "genre_id", :null => false
+  end
+
+  create_table "movies_issues", :id => false, :force => true do |t|
+    t.integer "movie_id", :null => false
+    t.integer "issue_id", :null => false
   end
 
   create_table "movies_people", :id => false, :force => true do |t|
@@ -112,6 +154,23 @@ ActiveRecord::Schema.define(:version => 20130223010252) do
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
   end
 
   create_table "users", :force => true do |t|

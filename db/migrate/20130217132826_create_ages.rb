@@ -2,7 +2,7 @@
 class CreateAges < ActiveRecord::Migration
   def change
     create_table :ages do |t|
-      t.string        :content, :null => false
+      t.string        :name, :null => false
       t.timestamps
     end
 

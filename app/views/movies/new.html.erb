@@ -1,10 +1,10 @@
 <div id="content-header">
   <h1>新建电影</h1>
 </div>
-<div class="container-fluid" >
+<div class="container-fluid">
   <div class="row-fluid">
     <div class="span12">
-      <%= form_for :movie, :html => {:id => 'new_movie', :class => "form-horizontal"} do |f| %>
+      <%= form_for @movie, :html => {:id => 'new_movie', :class => "form-horizontal"} do |f| %>
           <%= render :partial => "form", :object => f %>
 
           <div class="form-actions">
@@ -16,3 +16,9 @@
     </div>
   </div>
 </div>
+<% content_for :page_script do %>
+    <script type="text/javascript">
+        $('.datepicker').datepicker();
+    </script>
+
+<% end %>

@@ -2,7 +2,28 @@
   <div class="control-group">
     <%= form.label :name, '片名', :class => 'control-label' %>
     <div class="controls">
-      <%= form.text_field :name, :class => 'input-large' %>
+      <%= form.text_field :name, :class => 'input-medium' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= form.label :category_id, '出品国家', :class => 'control-label' %>
+    <div class="controls">
+      <%= form.select :country, Country.all.collect { |c| [c.name, c.name] } %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= form.label :category_id, '出品年代', :class => 'control-label' %>
+    <div class="controls">
+      <%= form.text_field :production_date, :class => 'datepicker' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= form.label :auditing_file, '通过令文号', :class => 'control-label' %>
+    <div class="controls">
+      <%= form.text_field :auditing_file, :class => 'input-large' %>
     </div>
   </div>
 
@@ -10,6 +31,53 @@
     <%= form.label :category_id, '影片种类', :class => 'control-label' %>
     <div class="controls">
       <%= form.select :category_id, Category.all.collect { |c| [c.name, c.id] } %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= form.label :age_id, '所属年代', :class => 'control-label' %>
+    <div class="controls">
+      <%= form.select :age_id, Age.all.collect { |c| [c.name, c.id] } %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= form.label :age_id, '所属年代备注', :class => 'control-label' %>
+    <div class="controls">
+      <%= form.text_area :age_note  %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= form.label :issues, '敏感问题', :class => 'control-label' %>
+    <div class="controls">
+
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= form.label :format_id, '影片规格', :class => 'control-label' %>
+    <div class="controls">
+      <%= form.select :format_id, Format.all.collect { |c| [c.name, c.id] } %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= form.label :color_id, '色别', :class => 'control-label' %>
+    <div class="controls">
+      <%= form.select :color_id, Color.all.collect { |c| [c.name, c.id] } %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= form.label :issues, '题材', :class => 'control-label' %>
+    <div class="controls">
+
+    </div>
+  </div>
+  <div class="control-group">
+    <%= form.label :issues, '长度', :class => 'control-label' %>
+    <div class="controls">
+
     </div>
   </div>
 </fieldset>

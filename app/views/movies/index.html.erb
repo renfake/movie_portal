@@ -2,7 +2,7 @@
   <h1>电影</h1>
 
   <div class="btn-group">
-    <%= link_to new_movie_path, :class => 'btn btn-mini btn-info tip-bottom', :title=> '新建电影'  do %>
+    <%= link_to new_movie_path, :class => 'btn btn-mini btn-info tip-bottom', :title => '新建电影' do %>
         <i class="icon-plus icon-white"></i>
     <% end %>
   </div>
@@ -23,7 +23,16 @@
         </tr>
         </thead>
         <tbody>
-
+        <% @movies.each do |movie| %>
+            <tr>
+               <td><%= movie.name %></td>
+              <td><%= movie.country %></td>
+              <td><%= movie.category.name %></td>
+              <td></td>
+              <td><%= movie.production_date %></td>
+              <td></td>
+            </tr>
+        <% end %>
         </tbody>
       </table>
     </div>
