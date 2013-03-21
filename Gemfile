@@ -44,3 +44,5 @@ gem 'cancan'
 
 
 gem 'acts-as-taggable-on', '~> 2.3.1'
+
+gem 'roo'

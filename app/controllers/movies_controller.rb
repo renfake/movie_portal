@@ -27,4 +27,19 @@ class MoviesController < ApplicationController
   def update
 
   end
+
+  def show
+
+  end
+
+  def destroy
+    movie = Movie.find params[:id]
+    if movie
+       flash[:notice] = "电影删除成功"
+       movie.destroy
+    else
+      flash[:error] = "未找到要删除的电影"
+    end
+    redirect_back_or_default movies_path
+  end
 end
