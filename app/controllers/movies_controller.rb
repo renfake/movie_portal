@@ -29,7 +29,11 @@ class MoviesController < ApplicationController
   end
 
   def show
-
+   @movie = Movie.find params[:id]
+   unless @movie
+     flash[:error] = "没有相关电影记录"
+     redirect_back_or_default movies_path
+   end
   end
 
   def destroy
@@ -42,4 +46,5 @@ class MoviesController < ApplicationController
     end
     redirect_back_or_default movies_path
   end
+
 end
