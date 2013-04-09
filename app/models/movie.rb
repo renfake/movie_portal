@@ -9,13 +9,17 @@ class Movie < ActiveRecord::Base
   # 色别
   belongs_to :color
   # 类型
-  has_and_belongs_to_many :genres
+  has_and_belongs_to_many :genres, :join_table => 'movies_genres'
   # 敏感问题
-  has_and_belongs_to_many :issues
+  has_and_belongs_to_many :issues, :join_table => 'movies_issues'
+
+  # 公司
+  has_many :movies_companies
+
   # 出品公司
-  has_and_belongs_to_many   :production_companies, :class_name => 'Company', :join_table => 'movies_companies', :conditions => {:duty => '出品'}
+  has_many   :production_companies, :class_name => 'Company', :through => 'movies_companies', :conditions => {:duty => '出品'}
   # 摄制公司
-  has_and_belongs_to_many   :shoot_companies,      :class_name => 'Company', :join_table => 'movies_companies', :conditions => {:duty => '摄制'}
+  has_many   :shoot_companies,      :class_name => 'Company', :through => 'movies_companies', :conditions => {:duty => '摄制'}
 
   # 人员
   has_many :movies_people

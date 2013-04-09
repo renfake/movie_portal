@@ -25,12 +25,16 @@
         <tbody>
         <% @movies.each do |movie| %>
             <tr>
-              <td><%= movie.name %></td>
+               <td><%=link_to movie.name, movie_path(movie.id) %></td>
               <td><%= movie.country %></td>
-              <td><%= movie.category ? movie.category.name : '' %></td>
+              <td><%= movie.category.name %></td>
               <td></td>
               <td><%= movie.production_date %></td>
-              <td><a href="/scores/new?id=<%=movie.id%>">评分</a> &nbsp; <a href="#">结果</a></td>
+              <td>
+                <%= link_to(movie_path(movie.id), :method=>:delete,  :confirm => '确定删除？', :class => 'btn btn-mini btn-danger') do %>
+                 <i class="icon-remove icon-white"></i>
+                <%end%>
+              </td>
             </tr>
         <% end %>
         </tbody>
