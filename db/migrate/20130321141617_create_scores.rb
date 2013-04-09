@@ -16,13 +16,13 @@ class CreateScores < ActiveRecord::Migration
   def change
     create_table :scores do |t|
       ##影片评项父节点ID
-      t.integer   :parent_id,       :null => false,   :default => 0
+      t.integer   :parent_id,       :null => true
       ##评分项名称
       t.string    :item_name,       :null => false
       ##该项目的最小分数
       t.integer   :min_score,       :null => false,   :default => 1
       ##该项目的最大分数
-      t.integer   :max_score,       :null => false,   :default => 1
+      t.integer   :max_score,       :null => false,   :default => 5
       ##分数递增规则，例如1,则表示 1,2,3,4,5...; 2则表示1,3,5...
       t.integer   :step,            :null => false,   :default => 1
       ##该项目描述信息

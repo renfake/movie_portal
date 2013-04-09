@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130309133738) do
+ActiveRecord::Schema.define(:version => 20130330234122) do
 
   create_table "ages", :force => true do |t|
     t.string   "name",       :null => false
@@ -156,6 +156,15 @@ ActiveRecord::Schema.define(:version => 20130309133738) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "scores", :force => true do |t|
+    t.integer "parent_id"
+    t.string  "item_name",                  :null => false
+    t.integer "min_score",   :default => 1, :null => false
+    t.integer "max_score",   :default => 5, :null => false
+    t.integer "step",        :default => 1, :null => false
+    t.string  "description"
+  end
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -171,6 +180,13 @@ ActiveRecord::Schema.define(:version => 20130309133738) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "user_movie_scores", :force => true do |t|
+    t.integer "user_id"
+    t.integer "movie_id"
+    t.integer "score_id"
+    t.decimal "mark",     :precision => 10, :scale => 0, :default => 0
   end
 
   create_table "users", :force => true do |t|

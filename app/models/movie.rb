@@ -28,6 +28,11 @@ class Movie < ActiveRecord::Base
   has_many   :actors,               :class_name => 'Person', :through => 'movies_people',
              :conditions => ["profession = ? or profession =?", '演员', '主要演员']
 
+  #分数
+  #has_many  :scores,                :class_name => 'UsersMoviesScore'
+  has_many   :user_movie_scores
+  has_many   :scores, :through => :user_movie_scores
+
   has_many   :broadcasts
 
   belongs_to :creator, :class_name => 'User', :foreign_key => 'created_by'

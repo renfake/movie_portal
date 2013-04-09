@@ -1,0 +1,32 @@
+<div class="span12">
+  <table class="table">
+    <thead>
+    <tr>
+      <th width="15%">评分项</th>
+      <th width="50%">描述</th>
+      <th>分数</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @scores.each do |score| %>
+        <tr>
+          <td><%= score.item_name %></td>
+          <td><%= score.description %></td>
+          <td>
+            <table>
+              <tr>
+                <%
+                   score.min_score.step(score.max_score, score.step) do |s|
+                %>
+                    <td><input type="radio" name="score[<%=score.item_name_en%>]" value="<%=s%>" /><%=s%></td>
+                <%
+                   end
+                %>
+              </tr>
+            </table>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

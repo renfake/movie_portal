@@ -53,6 +53,7 @@ MoviePortal::Application.routes.draw do
 
   resources :movies
   resources :broadcasts
+  resources :scores
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

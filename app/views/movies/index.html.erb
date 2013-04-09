@@ -25,12 +25,12 @@
         <tbody>
         <% @movies.each do |movie| %>
             <tr>
-               <td><%= movie.name %></td>
+              <td><%= movie.name %></td>
               <td><%= movie.country %></td>
-              <td><%= movie.category.name %></td>
+              <td><%= movie.category ? movie.category.name : '' %></td>
               <td></td>
               <td><%= movie.production_date %></td>
-              <td></td>
+              <td><a href="/scores/new?id=<%=movie.id%>">评分</a> &nbsp; <a href="#">结果</a></td>
             </tr>
         <% end %>
         </tbody>
