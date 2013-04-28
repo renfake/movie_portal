@@ -26,10 +26,18 @@
   </div>
   <%= form_for :score, :url => {:action => 'create'},:html => {:id => 'new_score', :class => "form-horizontal"} do |f| %>
       <%= render :partial => "form", :object => f %>
+      <%
+        update = @user_movie_scores == nil || @user_movie_scores.size == 0 ? false : true
+      %>
+      <%= hidden_field_tag(:need_update, update)%>
       <%= hidden_field_tag(:movie_id, @movie.id) %>
       <div class="form-actions">
-        <%= f.button "Create", :class => 'btn btn-primary' %>
-        <%= f.button 'Cancel', :class => 'btn', :type => 'reset' %>
+        <% if update %>
+            <%= f.button "Update", :class => 'btn btn-primary' %>
+        <% else %>
+            <%= f.button "Create", :class => 'btn btn-primary' %>
+        <% end %>
+        <%= f.button 'Reset', :class => 'btn', :type => 'reset' %>
       </div>
   <% end %>
 </div>

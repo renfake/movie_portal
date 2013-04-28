@@ -32,8 +32,14 @@
               <td><%= movie.production_date %></td>
               <td>
                 <%= link_to(movie_path(movie.id), :method=>:delete,  :confirm => '确定删除？', :class => 'btn btn-mini btn-danger') do %>
-                 <i class="icon-remove icon-white"></i>
+                    删除
                 <%end%>
+                <%= link_to(score_path(movie.id), :action=>:show , :class => 'btn btn-mini btn-primary') do %>
+                    评分
+                <%end %>
+                <%= link_to(edit_score_path(movie.id), :action=>:edit , :class => 'btn btn-mini btn-success') do %>
+                    查看结果
+                <%end %>
               </td>
             </tr>
         <% end %>

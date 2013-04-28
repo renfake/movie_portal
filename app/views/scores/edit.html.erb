@@ -1,0 +1,35 @@
+<div id="content-header">
+  <h1>电影评分结果</h1>
+</div>
+<div class="container-fluid">
+  <div class="span12">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>片名</th>
+        <th>出品国家</th>
+        <th>片种</th>
+        <th>出品单位</th>
+        <th>出品年份</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @movie.name%></td>
+        <td><%= @movie.country%></td>
+        <td><%= @movie.category ? @movie.category.name : '' %></td>
+        <td></td>
+        <td><%= @movie.production_date %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span12">
+    <% @scores.each do |score| %>
+        <%= score.item_name %>
+        <div class="progress">
+            45% <div class="bar" style="width: 60%;">128</div>
+        </div>
+    <% end %>
+  </div>
+</div>

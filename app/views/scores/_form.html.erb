@@ -16,9 +16,15 @@
             <table>
               <tr>
                 <%
+                   mark = 3
+                   @user_movie_scores.each do |ums|
+                    if score.id == ums.score_id
+                      mark = ums.mark
+                    end
+                   end
                    score.min_score.step(score.max_score, score.step) do |s|
                 %>
-                    <td><input type="radio" name="score[<%=score.item_name_en%>]" value="<%=s%>" /><%=s%></td>
+                    <td><input type="radio" name="score[<%=score.item_name_en%>]" value="<%=s%>"  <%= mark==s ? "checked='checked'" : ""%> /><%=s%></td>
                 <%
                    end
                 %>
