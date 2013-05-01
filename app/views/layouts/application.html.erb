@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>
+<html class="lt-ie9 lt-ie8 lt-ie7" lang="en">
+<![endif]-->
+<!--[if IE 7]>
+<html class="lt-ie9 lt-ie8" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html class="lt-ie9" lang="en">
+<![endif]-->
+<!--[if gt IE 8]>
+<!-->
+<html lang="en">
+<!--
+<![endif]-->
 <head>
   <title>电影编排系统</title>
   <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <%= stylesheet_link_tag "/css/bootstrap.min", :media => "all" %>
-  <%= stylesheet_link_tag "/css/bootstrap-responsive.min", :media => "all" %>
-  <%= stylesheet_link_tag "/css/fullcalendar.css" %>
-  <%= stylesheet_link_tag "/css/unicorn.main.css" %>
-  <%= stylesheet_link_tag "/css/unicorn.grey.css" %>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <%= stylesheet_link_tag "/blue-moon/icomoon/style.css" %>
+  <!--[if lte IE 7]>
+  <script src="/blue-moon/icomoon-font/lte-ie7.js"></script>
+  <![endif]-->
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "/blue-moon/css/main.css" %>
+  <!--[if lt IE 9]>
+    <% javascript_include_tag "/js/html5shiv.js" %>
+  <![endif]-->
   <style>
       body {
           font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -17,58 +33,281 @@
           line-height: 20px;
           color: #333;
       }
-
-      .table th {
-          font-weight: normal;
-          font-size: 16px;
-      }
   </style>
 
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<header>
+  <a href="index.html" class="logo">
+    <img src="img/logo.png" alt="Logo"/>
+  </a>
 
-<div id="header" style="height: 90px;">
-  <!--<h1><a href="./dashboard.html">电影编排系统</a></h1>-->
+  <div class="user-profile">
+    <a data-toggle="dropdown" class="dropdown-toggle">
+      <img class="profile" src="img/profile1.png" alt="Profile-Image">
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu pull-right">
+      <li>
+        <a href="#">
+          Edit Profile
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          Account Settings
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+  <ul class="mini-nav">
+    <li>
+      <a href="#">
+        <div class="fs1" aria-hidden="true" data-icon="&#xe040;"></div>
+            <span class="info-label">
+              3
+            </span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="fs1" aria-hidden="true" data-icon="&#xe04c;"></div>
+            <span class="info-label-green">
+              5
+            </span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="fs1" aria-hidden="true" data-icon="&#xe037;"></div>
+            <span class="info-label-orange">
+              9
+            </span>
+      </a>
+    </li>
+  </ul>
+</header>
+<div class="container-fluid">
+  <div class="dashboard-container">
+    <div class="top-nav">
+      <ul>
+        <li>
+          <a class="selected" href="index.html" data-original-title="">
+            <div data-icon="" aria-hidden="true" class="fs1"></div>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="forms.html" data-original-title="">
+            <div data-icon="" aria-hidden="true" class="fs1"></div>
+            Forms
+          </a>
+        </li>
+        <li>
+          <a href="graphs.html" data-original-title="">
+            <div data-icon="" aria-hidden="true" class="fs1"></div>
+            Graphs
+          </a>
+        </li>
+        <li>
+          <a href="ui-elements.html" data-original-title="">
+            <div data-icon="" aria-hidden="true" class="fs1"></div>
+            UI Elements
+          </a>
+        </li>
+        <li>
+          <a href="icons.html" data-original-title="">
+            <div data-icon="" aria-hidden="true" class="fs1"></div>
+            Icons
+          </a>
+        </li>
+        <li>
+          <a href="tables.html" data-original-title="">
+            <div data-icon="" aria-hidden="true" class="fs1"></div>
+            Tables
+          </a>
+        </li>
+        <li>
+          <a href="media.html" data-original-title="">
+            <div data-icon="" aria-hidden="true" class="fs1"></div>
+            Media
+          </a>
+        </li>
+        <li>
+          <a href="calendar.html" data-original-title="">
+            <div data-icon="" aria-hidden="true" class="fs1"></div>
+            Calendar
+          </a>
+        </li>
+        <li>
+          <a href="typography.html" data-original-title="">
+            <div data-icon="" aria-hidden="true" class="fs1"></div>
+            Typography
+          </a>
+        </li>
+        <li>
+          <a href="edit-profile.html" data-original-title="">
+            <div data-icon="" aria-hidden="true" class="fs1"></div>
+            Extras
+          </a>
+        </li>
+      </ul>
+      <div class="clearfix">
+      </div>
+    </div>
+
+    <div class="sub-nav">
+      <ul>
+        <li><a class="heading" href="" data-original-title="">Dashboard</a></li>
+        <li>
+          <a href="#mailbox" data-original-title="">
+            Mailbox
+          </a>
+        </li>
+        <li>
+          <a href="#todo" data-original-title="">
+            ToDos
+          </a>
+        </li>
+        <li>
+          <a href="#chats" data-original-title="">
+            Chats
+          </a>
+        </li>
+        <li>
+          <a href="#notifications" data-original-title="">
+            Notifications
+          </a>
+        </li>
+      </ul>
+      <input type="search" class="input-search hidden-phone" placeholder="Search">
+
+      <div class="btn-group pull-right">
+        <button class="btn btn-warning2">
+          Main Navigation
+        </button>
+        <button class="btn btn-warning2 dropdown-toggle" data-toggle="dropdown">
+              <span class="caret">
+              </span>
+        </button>
+        <ul class="dropdown-menu pull-right">
+          <li>
+            <a data-original-title="" href="index.html">
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="forms.html">
+              Forms
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="graphs.html">
+              Graphs
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="ui-elements.html">
+              UI Elements
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="icons.html">
+              Icons
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="tables.html">
+              Tables
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="media.html">
+              Media
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="calendar.html">
+              Calendar
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="typography.html">
+              Typography
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="edit-profile.html">
+              Edit Profile
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="invoice.html">
+              Invoice
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="login.html">
+              Login
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="404.html">
+              404 Page
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="500.html">
+              500 Page
+            </a>
+          </li>
+          <li>
+            <a data-original-title="" href="help.html">
+              Help
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dashboard-wrapper">
+
+    </div>
+
+  </div>
 </div>
+<footer>
+  <p>
+    &copy; BlueMoon 2013
+  </p>
+</footer>
 
-<%= render :partial => 'shared/user_nav' %>
-<%= render :partial => 'shared/sidebar' %>
-
-
-<div id="content">
-  <%= render :partial => 'shared/flash_message' %>
-  <%= yield %>
-</div>
-<%= javascript_include_tag "/js/excanvas.min" %>
-<% javascript_include_tag "default" %>
 <%= javascript_include_tag "application" %>
-<% javascript_include_tag "/js/jquery.js" %>
-<% javascript_include_tag "/js/jquery.ui.custom.js" %>
-<% javascript_include_tag "/js/bootstrap.js" %>
-<% javascript_include_tag "/js/bootstrap-colorpicker.js" %>
-<% javascript_include_tag "/js/bootstrap-datepicker.js" %>
-<% javascript_include_tag "/js/jquery.uniform.js" %>
-<% javascript_include_tag "/js/select2.min.js" %>
-<% javascript_include_tag "/js/unicorn.js" %>
-<% javascript_include_tag "/js/unicorn.form_common.js" %>
+<%= javascript_include_tag "/blue-moon/js/jquery.scrollUp.js" %>
 
- <%= yield :page_script %>
+
 
 <script type="text/javascript">
-
-    function toggle_menu(menu_id) {
-        if (menu_id != '') {
-            $("#" + menu_id).addClass('active');
-        }
-    }
-
-    //<![CDATA[
+    //ScrollUp
     $(function () {
-        toggle_menu('<%= @current_main_nav %>');
+        $.scrollUp({
+            scrollName: 'scrollUp', // Element ID
+            topDistance: '300', // Distance from top before showing element (px)
+            topSpeed: 300, // Speed back to top (ms)
+            animation: 'fade', // Fade, slide, none
+            animationInSpeed: 400, // Animation in speed (ms)
+            animationOutSpeed: 400, // Animation out speed (ms)
+            scrollText: 'Scroll to top', // Text for element
+            activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+        });
     });
-    //]]>
 </script>
 </body>
 </html>
