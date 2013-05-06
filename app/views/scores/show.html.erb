@@ -29,8 +29,8 @@
       <%
         update = @user_movie_scores == nil || @user_movie_scores.size == 0 ? false : true
       %>
-      <%= hidden_field_tag(:need_update, update)%>
       <%= hidden_field_tag(:movie_id, @movie.id) %>
+      <%= hidden_field_tag(:need_update, update) %>
       <div class="form-actions">
         <% if update %>
             <%= f.button "Update", :class => 'btn btn-primary' %>
