@@ -1,6 +1,7 @@
-<div id="content-header">
-  <h1>新建电影</h1>
-</div>
+<% content_for :sub_nav do %>
+    <%= render :partial => 'shared/movie_sub_nav', :locals => {:current =>  'new-movie'}%>
+<% end %>
+
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span12">

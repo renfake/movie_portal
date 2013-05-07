@@ -1,0 +1,7 @@
+<ul>
+  <li>
+    <%=link_to '电影库', movies_path, :class => 'heading', 'data-original-title'=> '' %>
+  </li>
+  <%= sub_nav_link '电影列表', movies_path,    current, 'movies'%>
+  <%= sub_nav_link '新建电影', new_movie_path, current, 'new-movie'%>
+</ul>
