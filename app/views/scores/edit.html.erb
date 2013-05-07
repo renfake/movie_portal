@@ -28,7 +28,11 @@
     <% @scores.each do |score| %>
         <%= score.item_name %>
         <div class="progress">
-            45% <div class="bar" style="width: 60%;">128</div>
+           <% @ums.each do |avg_mark, count, id|%>
+              <% if score.id == id %>
+              平均分: <%= avg_mark %>, &nbsp; 评分人数: <%= count %>
+              <% end %>
+           <% end%>
         </div>
     <% end %>
   </div>

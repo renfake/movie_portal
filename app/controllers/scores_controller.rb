@@ -9,7 +9,7 @@ class ScoresController < ApplicationController
 
   def create
     @movie_id = @id = params[:movie_id]
-    if params[:need_update] == true
+    if params[:need_update] == 'true'
       @user_id = 1              #need to be replaced by session
       params[:score].each do |key, value|
         @score = Score.find_by_item_name_en(key)
@@ -29,6 +29,7 @@ class ScoresController < ApplicationController
   def edit
     @movie = Movie.find params[:id]
     @scores = Score.all
-
+    conn = ActiveRecord::Base::connection
+    @ums = conn.execute(%Q{SELECT ROUND(AVG(ums.mark),1) mark, COUNT(ums.user_id) cnt, ums.score_id score_id FROM user_movie_scores ums WHERE ums.movie_id = #{conn.quote(params[:id])} GROUP BY ums.score_id})
   end
 end
