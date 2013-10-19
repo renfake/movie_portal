@@ -38,6 +38,9 @@ class CreateMovies < ActiveRecord::Migration
       ## 附注
       t.text        :note
 
+      ##
+      t.string      :external_id
+
       t.integer     :created_by
       t.integer     :updated_by
       t.timestamps

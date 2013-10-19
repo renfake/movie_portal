@@ -33,9 +33,18 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Token authenticatable
       # t.string :authentication_token
 
+      t.string :name, :null => false
+      #simple_role
+      t.string :role, :null => false
 
       t.timestamps
     end
+
+    # Create a default user
+    User.create! :name => 'super_admin',
+                 :email => 'admin@example.com',
+                 :password => 'password', :password_confirmation => 'password',
+                 :role => :admin
 
     add_index :users, :email,                :unique => true
     add_index :users, :reset_password_token, :unique => true

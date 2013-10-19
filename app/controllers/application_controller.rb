@@ -1,9 +1,12 @@
-require 'nav_bar_filter'
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :current_nav_filter_for_site
+  #before_filter :current_nav_filter_for_site
+  before_filter :authenticate_user!
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 
   def store_location
     session[:return_to] = request.referer if request.get? and controller_name != "user_sessions" and controller_name != "sessions"
@@ -18,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-    def current_nav_filter_for_site
-      @current_main_nav = NavBarFilter.current_tab_for(controller_path)
-    end
+  #def current_nav_filter_for_site
+  #  @current_main_nav = NavBarFilter.current_tab_for(controller_path)
+  #end
 end

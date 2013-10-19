@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title><%= yield :title %> - 电影编排系统</title>
+
+  <meta name="description" content="User login page"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- basic styles -->
+
+  <link href="/ace/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/ace/css/font-awesome.min.css"/>
+
+  <!--[if IE 7]>
+  <link rel="stylesheet" href="/ace/css/font-awesome-ie7.min.css"/>
+  <![endif]-->
+
+  <!-- page specific plugin styles -->
+
+  <!-- fonts -->
+
+  <link rel="stylesheet" href="/ace/css/ace-fonts.css"/>
+
+  <!-- ace styles -->
+
+  <link rel="stylesheet" href="/ace/css/ace.min.css"/>
+  <link rel="stylesheet" href="/ace/css/ace-rtl.min.css"/>
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/ace/css/ace-ie.min.css"/>
+  <![endif]-->
+
+  <!-- inline styles related to this page -->
+  <%= yield :inline_style_for_page %>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+  <!--[if lt IE 9]>
+  <script src="/ace/js/html5shiv.js"></script>
+  <script src="/ace/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="<%= yield :body_class %>">
+<div class="main-container">
+<div class="main-content">
+<%= yield%>
+<!-- /.row -->
+</div>
+</div>
+<!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='/ace/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+</script>
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='/ace/js/jquery-1.10.2.min.js'>" + "<" + "/script>");
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+    if ("ontouchend" in document) document.write("<script src='/ace/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+
+<!-- inline scripts related to this page -->
+<%= yield :customer_js_for_page %>
+
+</body>
+</html>

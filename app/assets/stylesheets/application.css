@@ -12,25 +12,4 @@
  *= require_tree .
  */
 
-header {
-    height: 40px !important;
-    line-height: 40px !important;
-}
 
-header ul.mini-nav {
-    height: 40px !important;
-}
-
-
-header div.user-profile {
-    margin-top: 5px;
-}
-
-header div.user-profile img.profile {
-    height: 20px;
-    width: 20px;
-}
-
-.dashboard-container {
-    margin-top: 60px !important;
-}

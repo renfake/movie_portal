@@ -1,44 +1,56 @@
-<% content_for :sub_nav do %>
-<%= render :partial => 'shared/movie_sub_nav', :locals => {:current =>  'movies'}%>
+<% content_for :title do %>电影
 <% end %>
 
-<div class="container-fluid" style="background: white; height: 100%;">
-  <div class="row-fluid">
-    <div class="span12">
-      <table class="table table-bordered table-striped">
-        <thead>
-        <tr>
-          <th>片名</th>
-          <th>出品国家</th>
-          <th>片种</th>
-          <th>出品单位</th>
-          <th>出品年份</th>
-          <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @movies.each do |movie| %>
-            <tr>
-               <td><%=link_to movie.name, movie_path(movie.id) %></td>
-              <td><%= movie.country %></td>
-              <td><%= movie.category.name %></td>
-              <td></td>
-              <td><%= movie.production_date %></td>
-              <td>
-                <%= link_to(movie_path(movie.id), :method=>:delete,  :confirm => '确定删除？', :class => 'btn btn-mini btn-danger') do %>
-                    删除
-                <%end%>
-                <%= link_to(score_path(movie.id), :action=>:show , :class => 'btn btn-mini btn-primary') do %>
-                    评分
-                <%end %>
-                <%= link_to(edit_score_path(movie.id), :action=>:edit , :class => 'btn btn-mini btn-success') do %>
-                    查看结果
-                <%end %>
-              </td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<div class="page-header">
+  <h1>电影
+    <small>
+      <i class="icon-double-angle-right"></i>
+      概览
+    </small>
+  </h1>
 </div>
+<!-- /.page-header -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>片名</th>
+        <th>出品国家</th>
+        <th>片种</th>
+        <th>出品单位</th>
+        <th>出品年份</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @movies.each do |movie| %>
+          <tr>
+            <td><%= link_to movie.name, movie_path(movie.id) %></td>
+            <td><%= movie.country %></td>
+            <td><%= movie.category.name %></td>
+            <td></td>
+            <td><%= movie.production_date %></td>
+            <td>
+              <%= link_to(movie_path(movie.id), :method => :delete, :confirm => '确定删除？', :class => 'btn btn-mini btn-danger') do %>
+                  删除
+              <% end %>
+              <%= link_to(score_path(movie.id), :action => :show, :class => 'btn btn-mini btn-primary') do %>
+                  评分
+              <% end %>
+              <%= link_to(edit_score_path(movie.id), :action => :edit, :class => 'btn btn-mini btn-success') do %>
+                  查看结果
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <!-- PAGE CONTENT ENDS -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->
