@@ -51,6 +51,15 @@ MoviePortal::Application.routes.draw do
   #   end
 
 
+  match 'movies/import' => 'movies#import', :via => [:get], :as => 'movie_import'
+  match 'movies/import' => 'movies#process_import', :via => [:post], :as => 'movie_import'
+
+  match 'broadcasts/import' => 'broadcasts#import', :via => [:get], :as => 'broadcast_import'
+  match 'broadcasts/import' => 'broadcasts#process_import', :via => [:post], :as => 'broadcast_import'
+
+  match 'broadcasts/upload' => 'broadcasts#upload', :via => [:get], :as => 'broadcast_upload'
+  match 'broadcasts/upload' => 'broadcasts#process_upload', :via => [:post], :as => 'broadcast_upload'
+
   resources :movies
   resources :broadcasts
   resources :scores

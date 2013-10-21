@@ -37,18 +37,19 @@ class Movie < ActiveRecord::Base
   has_many   :user_movie_scores
   has_many   :scores, :through => :user_movie_scores
 
+  #播出记录
   has_many   :broadcasts
 
   belongs_to :creator, :class_name => 'User', :foreign_key => 'created_by'
   belongs_to :updator, :class_name => 'User', :foreign_key => 'updated_by'
 
   attr_accessible :name, :country, :production_date, :category_id, :auditing_file, :age_id, :age_note, :runtime,
-                  :color_id, :format_id, :picture_id, :plot_summary, :director_statement, :note, :created_by, :updated_by
+                  :color_id, :format_id, :picture_id, :plot_summary, :director_statement, :note, :external_id, :first_run, :created_by, :updated_by
 
   validates_presence_of   :name
 
-  validates_presence_of   :category_id
-  validates_inclusion_of  :category_id,  :in => Category.all.map(&:id)
+  #validates_presence_of   :category_id
+  validates_inclusion_of  :category_id,  :in => lambda {|movie| Category.all.map(&:id)}, :message => '影片类型不存在', :allow_nil => true
 
 
 end

@@ -81,6 +81,7 @@
 <%= render :partial => '/shared/breadcrumbs'%>
 
 <div class="page-content">
+  <%= render :partial => '/shared/flash_message'%>
   <%= yield%>
 </div>
 <!-- /.page-content -->
@@ -185,6 +186,8 @@
 <script src="/ace/js/ace.min.js"></script>
 
 <script src="/js/jquery.scrollUp.min.js"></script>
+
+<%= javascript_include_tag "application" %>
 
 <!-- inline scripts related to this page -->
 <%= yield :customer_js_for_page %>

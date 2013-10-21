@@ -1,0 +1,81 @@
+<% content_for :title do
+  '播出记录'
+end %>
+
+<div class="page-header">
+  <h1>播出记录
+    <small>
+      <i class="icon-double-angle-right"></i>
+      导入
+    </small>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+
+    <%= form_tag broadcasts_import_path, :method => :post, :multipart => true, :class => 'form-horizontal', :role => 'form' do %>
+
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">文件</label>
+
+          <div class="col-sm-9">
+            <div class="col-sm-5">
+              <input type="file" id="id-input-file-2" name="file">
+              <label data-title="Choose" class="file-label"><span data-title="No File ..." class="file-name"></span></label>
+
+            </div>
+          </div>
+        </div>
+        <!--<div class="form-group">-->
+        <!--<label for="inputEmail3" class="col-sm-3 control-label"></label>-->
+
+        <!--<div class="col-sm-9">-->
+
+        <!--<label>-->
+        <!--<input type="checkbox" class="ace" name="form-field-checkbox">-->
+        <!--<span class="lbl"> 覆盖</span>-->
+        <!--</label>-->
+
+
+        <!--</div>-->
+        <!--</div>-->
+
+        <div class="clearfix form-actions">
+          <div class="col-md-offset-3 col-md-9">
+            <button type="submit" class="btn btn-info">
+              <i class="icon-ok bigger-110"></i>
+              导入
+            </button>
+
+            &nbsp; &nbsp; &nbsp;
+            <button type="reset" class="btn">
+              <i class="icon-undo bigger-110"></i>
+              重置
+            </button>
+          </div>
+        </div>
+    <% end %>
+    <!-- PAGE CONTENT ENDS -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->
+
+<% content_for :customer_js_for_page do %>
+    <script type="text/javascript">
+        $('#id-input-file-2').ace_file_input({
+            no_file: 'No File ...',
+            btn_choose: 'Choose',
+            btn_change: 'Change',
+            droppable: false,
+            onchange: null,
+            thumbnail: false //| true | large
+//whitelist:'gif|png|jpg|jpeg'
+//blacklist:'exe|php'
+//onchange:''
+//
+        });
+    </script>
+<% end %>

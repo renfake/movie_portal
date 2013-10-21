@@ -38,7 +38,7 @@
 <!-- #sidebar-shortcuts -->
 
 <ul class="nav nav-list">
-<li class="active">
+<li>
   <a href="index.html">
     <i class="icon-dashboard"></i>
     <span class="menu-text"> 仪表盘 </span>
@@ -52,14 +52,41 @@
   </a>
 </li>
 
-<li>
-  <a href="#">
+<li <%= raw 'class="active open"' if controller_name == 'broadcasts' %>>
+  <a href="#" class="dropdown-toggle">
     <i class="icon-desktop"></i>
     <span class="menu-text"> 播出记录 </span>
+
+    <b class="arrow icon-angle-down"></b>
   </a>
+
+  <ul class="submenu">
+    <li <%= raw 'class="active"' if controller_name == 'broadcasts' && action_name == 'draft' %> >
+      <%= link_to broadcasts_path do -%>
+          <i class="icon-double-angle-right"></i>
+          <span class="menu-text"> 计划播出 </span>
+      <%end%>
+    </li>
+    <li <%= raw 'class="active"' if controller_name == 'broadcasts' && action_name == 'index' %> >
+      <%= link_to broadcasts_path do -%>
+          <i class="icon-double-angle-right"></i>
+          <span class="menu-text"> 历史记录 </span>
+      <%end%>
+    </li>
+
+    <% if current_user.try(:role?, :admin)%>
+    <li <%= raw 'class="active"' if controller_name == 'broadcasts' && action_name == 'import' %>>
+      <%= link_to broadcast_import_path do %>
+        <i class="icon-double-angle-right"></i>
+        导入<span class="label label-warning arrowed arrowed-in-right">admin</span>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+
 </li>
 
-<li>
+<li  <%= raw 'class="active"' if controller_name == 'movies' %>>
   <%= link_to movies_path do %>
       <i class="icon-list"></i>
       <span class="menu-text"> 影片 </span>

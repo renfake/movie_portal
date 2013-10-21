@@ -233,7 +233,7 @@
     <img class="nav-user-photo" src="/ace/avatars/user.jpg" alt="Jason's Photo"/>
 								<span class="user-info">
 									<small>欢迎,</small>
-									<%=current_user.name %>
+                                  <%= current_user.name %>
 								</span>
 
     <i class="icon-caret-down"></i>
@@ -257,10 +257,10 @@
     <li class="divider"></li>
 
     <li>
-      <a href="#">
-        <i class="icon-off"></i>
-        登出
-      </a>
+      <%= link_to destroy_user_session_path, :method => :delete do -%>
+          <i class="icon-off"></i>
+          登出
+      <% end %>
     </li>
   </ul>
 </li>

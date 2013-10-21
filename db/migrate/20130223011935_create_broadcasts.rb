@@ -4,10 +4,8 @@ class CreateBroadcasts < ActiveRecord::Migration
     create_table :broadcasts do |t|
       ## 周次
       t.integer       :week, :null => false
-      ## 日期
-      t.date          :date, :null => false
-      ## 开始时间
-      t.time          :start_time, :null => false
+      ## 日期 & 开始时间
+      t.timestamp     :start_datetime, :null => false
       ## 电影
       t.integer       :movie_id,   :null => false
       ## 收视率
@@ -21,8 +19,21 @@ class CreateBroadcasts < ActiveRecord::Migration
       ## 首播
       t.boolean       :premiere,        :default => false
 
-      t.integer       :created_by
-      t.integer       :updated_by
+      ## 时长
+      t.integer       :duration,         :null => true
+
+      ## 状态: 正式，Draft(由当前的周或未来周的编排表生成)
+      t.string        :status,           :null => false
+
+      ## 记录生成方式: 手动生成（manual), 导入（upload), 编排表产生(system)
+      t.string        :come_from,        :null => false
+
+      ## 记录是导入产生是保存导入ID，便于批量删除
+      t.integer       :broadcast_upload_id
+
+      ## 记录更新的用户
+      t.integer       :created_by,      :null => false
+      t.integer       :updated_by,      :null => false
       t.timestamps
     end
   end

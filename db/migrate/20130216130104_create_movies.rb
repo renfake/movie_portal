@@ -38,7 +38,13 @@ class CreateMovies < ActiveRecord::Migration
       ## 附注
       t.text        :note
 
-      ##
+      ## 首映
+      t.boolean     :first_run, :default => false
+
+      ## 电视电影
+      t.boolean     :tv_movie,  :default => false
+
+      ## 外部系统标识
       t.string      :external_id
 
       t.integer     :created_by

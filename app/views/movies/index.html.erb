@@ -10,11 +10,14 @@
   </h1>
 </div>
 <!-- /.page-header -->
-
+<div>
+  <a class="btn btn-minier btn-primary" href="/movies/import">导入</a>
+</div>
 <div class="row">
   <div class="col-xs-12">
     <!-- PAGE CONTENT BEGINS -->
-    <table class="table table-bordered table-striped">
+    <%= will_paginate @movies, renderer: BootstrapPagination::Rails, :class => 'pagination pagination-right pagination-mini' %>
+    <table class="table table-bordered table-striped table-condensed">
       <thead>
       <tr>
         <th>片名</th>
@@ -30,17 +33,17 @@
           <tr>
             <td><%= link_to movie.name, movie_path(movie.id) %></td>
             <td><%= movie.country %></td>
-            <td><%= movie.category.name %></td>
+            <td><%= movie.category.try(:name) %></td>
             <td></td>
             <td><%= movie.production_date %></td>
             <td>
-              <%= link_to(movie_path(movie.id), :method => :delete, :confirm => '确定删除？', :class => 'btn btn-mini btn-danger') do %>
+              <%= link_to(movie_path(movie.id), :method => :delete, :confirm => '确定删除？', :class => 'btn btn-minier btn-danger') do %>
                   删除
               <% end %>
-              <%= link_to(score_path(movie.id), :action => :show, :class => 'btn btn-mini btn-primary') do %>
+              <%= link_to(score_path(movie.id), :action => :show, :class => 'btn btn-minier btn-primary') do %>
                   评分
               <% end %>
-              <%= link_to(edit_score_path(movie.id), :action => :edit, :class => 'btn btn-mini btn-success') do %>
+              <%= link_to(edit_score_path(movie.id), :action => :edit, :class => 'btn btn-minier btn-success') do %>
                   查看结果
               <% end %>
             </td>
