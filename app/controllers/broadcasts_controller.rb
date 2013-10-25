@@ -1,3 +1,5 @@
+# coding: utf-8
+require "roo"
 class BroadcastsController < ApplicationController
 
   def index
@@ -5,8 +7,11 @@ class BroadcastsController < ApplicationController
   end
 
 
-
-  def process_import
+  def upload
 
   end
+
+
+
+
 end

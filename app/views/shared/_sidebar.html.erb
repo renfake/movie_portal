@@ -52,7 +52,7 @@
   </a>
 </li>
 
-<li <%= raw 'class="active open"' if controller_name == 'broadcasts' %>>
+<li <%= raw 'class="active open"' if  %w(broadcasts, broadcast_uploads).include? controller_name %>>
   <a href="#" class="dropdown-toggle">
     <i class="icon-desktop"></i>
     <span class="menu-text"> 播出记录 </span>
@@ -75,8 +75,8 @@
     </li>
 
     <% if current_user.try(:role?, :admin)%>
-    <li <%= raw 'class="active"' if controller_name == 'broadcasts' && action_name == 'import' %>>
-      <%= link_to broadcast_import_path do %>
+    <li <%= raw 'class="active"' if controller_name == 'broadcast_uploads' && action_name == 'index' %>>
+      <%= link_to broadcast_uploads_path do %>
         <i class="icon-double-angle-right"></i>
         导入<span class="label label-warning arrowed arrowed-in-right">admin</span>
       <% end %>

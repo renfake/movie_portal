@@ -1,8 +1,6 @@
 MoviePortal::Application.routes.draw do
   devise_for :users
 
-  get "site/index"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -54,14 +52,9 @@ MoviePortal::Application.routes.draw do
   match 'movies/import' => 'movies#import', :via => [:get], :as => 'movie_import'
   match 'movies/import' => 'movies#process_import', :via => [:post], :as => 'movie_import'
 
-  match 'broadcasts/import' => 'broadcasts#import', :via => [:get], :as => 'broadcast_import'
-  match 'broadcasts/import' => 'broadcasts#process_import', :via => [:post], :as => 'broadcast_import'
-
-  match 'broadcasts/upload' => 'broadcasts#upload', :via => [:get], :as => 'broadcast_upload'
-  match 'broadcasts/upload' => 'broadcasts#process_upload', :via => [:post], :as => 'broadcast_upload'
-
   resources :movies
   resources :broadcasts
+  resources :broadcast_uploads
   resources :scores
 
   # You can have the root of your site routed with "root"

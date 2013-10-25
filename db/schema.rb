@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131020112931) do
+ActiveRecord::Schema.define(:version => 20131021102249) do
 
   create_table "ages", :force => true do |t|
     t.string   "name",       :null => false
@@ -19,20 +19,46 @@ ActiveRecord::Schema.define(:version => 20131020112931) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "broadcast_upload_issues", :force => true do |t|
+    t.integer  "broadcast_upload_id", :null => false
+    t.integer  "row",                 :null => false
+    t.string   "issue_type",          :null => false
+    t.text     "root_cause"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "broadcast_uploads", :force => true do |t|
+    t.string   "file_name",                              :null => false
+    t.string   "note"
+    t.boolean  "skip_the_first_line", :default => true
+    t.boolean  "go_with_warning",     :default => false
+    t.integer  "count"
+    t.datetime "min_time"
+    t.datetime "max_time"
+    t.string   "status",                                 :null => false
+    t.integer  "created_by",                             :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
   create_table "broadcasts", :force => true do |t|
-    t.integer  "week",                                                             :null => false
-    t.date     "date",                                                             :null => false
-    t.time     "start_time",                                                       :null => false
-    t.integer  "movie_id",                                                         :null => false
-    t.decimal  "audience_rating", :precision => 5, :scale => 2,                    :null => false
-    t.decimal  "audience_share",  :precision => 5, :scale => 2,                    :null => false
-    t.integer  "audience_number",                                                  :null => false
+    t.integer  "week",                                                                 :null => false
+    t.datetime "start_datetime",                                                       :null => false
+    t.integer  "movie_id",                                                             :null => false
+    t.decimal  "audience_rating",     :precision => 5, :scale => 2,                    :null => false
+    t.decimal  "audience_share",      :precision => 5, :scale => 2,                    :null => false
+    t.integer  "audience_number",                                                      :null => false
     t.integer  "time_bucket"
-    t.boolean  "premiere",                                      :default => false
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.datetime "created_at",                                                       :null => false
-    t.datetime "updated_at",                                                       :null => false
+    t.boolean  "premiere",                                          :default => false
+    t.integer  "duration"
+    t.string   "status",                                                               :null => false
+    t.string   "come_from",                                                            :null => false
+    t.integer  "broadcast_upload_id"
+    t.integer  "created_by",                                                           :null => false
+    t.integer  "updated_by",                                                           :null => false
+    t.datetime "created_at",                                                           :null => false
+    t.datetime "updated_at",                                                           :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -109,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20131020112931) do
     t.text     "director_statement"
     t.text     "note"
     t.boolean  "first_run",          :default => false
+    t.boolean  "tv_movie",           :default => false
     t.string   "external_id"
     t.integer  "created_by"
     t.integer  "updated_by"

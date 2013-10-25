@@ -1,0 +1,150 @@
+<% content_for :title do
+  '播出记录'
+end %>
+
+<div class="page-header">
+  <h1>播出记录
+    <small>
+      <i class="icon-double-angle-right"></i>
+      导入
+    </small>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+
+    <%= form_tag broadcast_uploads_path, :method => :post, :multipart => true, :class => 'form-horizontal', :role => 'form' do %>
+
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label">文件</label>
+
+          <div class="col-sm-9">
+            <div class="col-sm-5">
+              <input type="file" id="id-input-file-2" name="file">
+              <label data-title="Choose" class="file-label"><span data-title="No File ..." class="file-name"></span></label>
+
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label"></label>
+
+          <div class="col-sm-9">
+            <div class="checkbox">
+            <label>
+              <input type="checkbox" class="ace" name="skip_the_first_line"  <%= 'checked' if @skip_the_first_line%>>
+              <span class="lbl"> 跳过第一行</span>
+            </label>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-3 control-label"></label>
+
+          <div class="col-sm-9">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" class="ace" name="go_with_warning" <%= 'checked' if @go_with_warning%>>
+                <span class="lbl"> 导入警告数据</span>
+              </label>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="clearfix form-actions">
+          <div class="col-md-offset-3 col-md-9">
+            <button type="submit" class="btn btn-info btn-xs">
+              <i class="icon-ok bigger-110"></i>
+              上传
+            </button>
+
+            &nbsp; &nbsp; &nbsp;
+            <button type="reset" class="btn btn-xs">
+              <i class="icon-undo bigger-110"></i>
+              重置
+            </button>
+          </div>
+        </div>
+    <% end %>
+    <!-- PAGE CONTENT ENDS -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <h3 class="header smaller lighter blue">上传历史</h3>
+    <table class="table table-striped table-bordered table-hover" id="sample-table-1">
+      <thead>
+      <tr>
+        <th class="center">
+          <label>
+            <input type="checkbox" class="ace">
+            <span class="lbl"></span>
+          </label>
+        </th>
+        <th>最新上传时间</th>
+        <th>文件</th>
+        <th>上传者</th>
+        <th class="hidden-480">记录</th>
+
+        <th>
+          最早播出时间
+        </th>
+        <th>
+          最晚播出时间
+        </th>
+        <th class="hidden-480">状态</th>
+
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+ <% @broadcast_uploads.each do |broadcast_upload| %>
+    <tr>
+      <td class="center">
+        <label>
+          <input class="ace" type="checkbox">
+          <span class="lbl"></span>
+        </label>
+      </td>
+      <td><%= broadcast_upload.created_at %></td>
+      <td><%= broadcast_upload.file_name %></td>
+      <td><%= broadcast_upload.user.name %></td>
+      <td><%= broadcast_upload.count %></td>
+      <td><%= broadcast_upload.min_time %></td>
+      <td><%= broadcast_upload.max_time %></td>
+      <td><%= broadcast_upload.status %></td>
+      <td></td>
+    </tr>
+ <% end %>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->
+
+<% content_for :customer_js_for_page do %>
+    <script type="text/javascript">
+        $('#id-input-file-2').ace_file_input({
+            no_file: 'No File ...',
+            btn_choose: 'Choose',
+            btn_change: 'Change',
+            droppable: false,
+            onchange: null,
+            thumbnail: false //| true | large
+//whitelist:'gif|png|jpg|jpeg'
+//blacklist:'exe|php'
+//onchange:''
+//
+        });
+    </script>
+<% end %>

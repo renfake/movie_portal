@@ -2,7 +2,7 @@
 class CreateBroadcastUploadIssues < ActiveRecord::Migration
   def change
     create_table :broadcast_upload_issues do |t|
-      t.integer :broadcast_upload_id
+      t.integer :broadcast_upload_id, :null => false
 
       ## 行号
       t.integer :row, :null => false
