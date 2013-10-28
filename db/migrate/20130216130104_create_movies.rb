@@ -15,7 +15,7 @@ class CreateMovies < ActiveRecord::Migration
       t.integer     :category_id
 
       ## 通过令文号
-      t.string       :auditing_file
+      t.string      :auditing_file
 
       ## 所属年代
       t.integer     :age_id

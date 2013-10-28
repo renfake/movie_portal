@@ -1,0 +1,76 @@
+<% content_for :title do
+  '播出记录导入详细信息'
+end %>
+
+<div class="page-header">
+  <h1>播出记录
+    <small>
+      <i class="icon-double-angle-right"></i>
+      导入信息
+    </small>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+    <table class="table table-striped table-bordered table-hover" id="sample-table-1">
+      <thead>
+      <tr>
+        <th>行号</th>
+        <th>日期</th>
+        <th>开始时间</th>
+        <th>节目名称</th>
+        <th>收视率</th>
+        <th>收视份额</th>
+        <th>收视千人</th>
+        <th>时段</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @broadcast_upload.records_by_row((params[:kind]||:error).to_sym)[:rows].each do |record_row| %>
+         <tr>
+           <td><%= record_row[:row_number] %></td>
+           <td>
+             <% if record_row['DATE'] %>
+               <span class="label  <%= (record_row['DATE'].issue_type == 'ERROR') ? 'label-danger':'label-warning' %>"> <%= record_row['DATE'].root_cause %></span>
+             <% end %>
+           </td>
+           <td>
+             <% if record_row['TIME'] %>
+                 <span class="label  <%= (record_row['TIME'].issue_type == 'ERROR') ? 'label-danger':'label-warning' %>"> <%= record_row['TIME'].root_cause %></span>
+             <% end %>
+           </td>
+           <td>
+             <% if record_row['MOVIE'] %>
+                 <span class="label  <%= (record_row['MOVIE'].issue_type == 'ERROR') ? 'label-danger':'label-warning' %>"> <%= record_row['MOVIE'].root_cause %></span>
+             <% end %>
+           </td>
+           <td>
+             <% if record_row['AUDIENCE_RATING'] %>
+                 <span class="label  <%= (record_row['AUDIENCE_RATING'].issue_type == 'ERROR') ? 'label-danger':'label-warning' %>"> <%= record_row['AUDIENCE_RATING'].root_cause %></span>
+             <% end %>
+           </td>
+           <td>
+             <% if record_row['AUDIENCE_SHARE'] %>
+                 <span class="label  <%= (record_row['AUDIENCE_SHARE'].issue_type == 'ERROR') ? 'label-danger':'label-warning' %>"> <%= record_row['AUDIENCE_SHARE'].root_cause %></span>
+             <% end %>
+           </td>
+           <td>
+             <% if record_row['AUDIENCE_NUMBER'] %>
+                 <span class="label  <%= (record_row['AUDIENCE_NUMBER'].issue_type == 'ERROR') ? 'label-danger':'label-warning' %>"> <%= record_row['AUDIENCE_NUMBER'].root_cause %></span>
+             <% end %>
+           </td>
+           <td>
+             <% if record_row['TIME_BUCKET'] %>
+                 <span class="label  <%= (record_row['TIME_BUCKET'].issue_type == 'ERROR') ? 'label-danger':'label-warning' %>"> <%= record_row['TIME_BUCKET'].root_cause %></span>
+             <% end %>
+           </td>
+         </tr>
+      <%end%>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->

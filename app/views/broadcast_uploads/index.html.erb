@@ -33,10 +33,10 @@ end %>
 
           <div class="col-sm-9">
             <div class="checkbox">
-            <label>
-              <input type="checkbox" class="ace" name="skip_the_first_line"  <%= 'checked' if @skip_the_first_line%>>
-              <span class="lbl"> 跳过第一行</span>
-            </label>
+              <label>
+                <input type="checkbox" class="ace" name="skip_the_first_line"  <%= 'checked' if @skip_the_first_line %>>
+                <span class="lbl"> 跳过第一行</span>
+              </label>
             </div>
 
           </div>
@@ -48,7 +48,7 @@ end %>
           <div class="col-sm-9">
             <div class="checkbox">
               <label>
-                <input type="checkbox" class="ace" name="go_with_warning" <%= 'checked' if @go_with_warning%>>
+                <input type="checkbox" class="ace" name="go_with_warning" <%= 'checked' if @go_with_warning %>>
                 <span class="lbl"> 导入警告数据</span>
               </label>
             </div>
@@ -89,6 +89,7 @@ end %>
             <span class="lbl"></span>
           </label>
         </th>
+        <th></th>
         <th>最新上传时间</th>
         <th>文件</th>
         <th>上传者</th>
@@ -101,30 +102,42 @@ end %>
           最晚播出时间
         </th>
         <th class="hidden-480">状态</th>
-
-        <th></th>
+        <th>错误数</th>
       </tr>
       </thead>
 
       <tbody>
- <% @broadcast_uploads.each do |broadcast_upload| %>
-    <tr>
-      <td class="center">
-        <label>
-          <input class="ace" type="checkbox">
-          <span class="lbl"></span>
-        </label>
-      </td>
-      <td><%= broadcast_upload.created_at %></td>
-      <td><%= broadcast_upload.file_name %></td>
-      <td><%= broadcast_upload.user.name %></td>
-      <td><%= broadcast_upload.count %></td>
-      <td><%= broadcast_upload.min_time %></td>
-      <td><%= broadcast_upload.max_time %></td>
-      <td><%= broadcast_upload.status %></td>
-      <td></td>
-    </tr>
- <% end %>
+      <% @broadcast_uploads.each do |broadcast_upload| %>
+          <tr>
+            <td class="center">
+              <label>
+                <input class="ace" type="checkbox">
+                <span class="lbl"></span>
+              </label>
+            </td>
+            <td>
+              <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                <%= link_to broadcast_upload_path(broadcast_upload), :class => 'blue' do %>
+                  <i class="icon-zoom-in bigger-130"></i>
+                <%end%>
+                <a href="#" class="red">
+                  <i class="icon-trash bigger-130"></i>
+                </a>
+              </div>
+            </td>
+            <td><%= broadcast_upload.created_at %></td>
+            <td><%= broadcast_upload.file_name %></td>
+            <td><%= broadcast_upload.user.name %></td>
+            <td><%= broadcast_upload.count %></td>
+            <td><%= broadcast_upload.min_time %></td>
+            <td><%= broadcast_upload.max_time %></td>
+            <td>
+              <span class="label <%= 'label-danger' if broadcast_upload.failed? %>"><%= broadcast_upload.status %></span>
+            </td>
+            <td><%= broadcast_upload.error_records.size %></td>
+
+          </tr>
+      <% end %>
       </tbody>
     </table>
   </div>

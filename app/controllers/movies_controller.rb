@@ -112,25 +112,43 @@ class MoviesController < ApplicationController
       ((excl.first_row(sheet)+1)..excl.last_row(sheet)).each do |row|
         Rails.logger.info "Process #{row}"
         begin
+          tv_movie = false
+
           raw_category = excl.cell(row, 5, sheet).to_s
           raw_category.strip!
           categories = raw_category.split(/\s+/)
           first_run = categories.include? '首映'
 
+
           category = categories.first || ''
           category.strip!
           category = '' if category == '首映'
-
+          tv_movie = true if category == '电视电影'
 
           raw_movie_name = excl.cell(row, 6, sheet).to_s
           raw_movie_name.strip!
           movie_names = raw_movie_name.split(/\s+/)
+
+          tv_movie = true if movie_names.include?('电视电影')
+
+          if category == '电视电影'
+            if movie_names.size > 1 && movie_names.first != '电视电影'
+              category = movie_names.first
+            else
+              category = ''
+            end
+          end
           first_run = first_run || movie_names.include?('首映')
           movie_name= movie_names.last || ''
 
           first_run = first_run || movie_name.start_with?('首映')
           movie_name.gsub!(/$首映/, '') if movie_name.start_with?('首映')
 
+
+          raw_tv_movie = excl.cell(row, 11, sheet).to_s
+          raw_tv_movie.strip!
+
+          tv_movie = true if raw_tv_movie == '电视电影'
 
           raw_runtime = excl.cell(row, 15, sheet).to_s
           raw_runtime.strip!
@@ -164,6 +182,7 @@ class MoviesController < ApplicationController
             movie.category = movie_category
             movie.first_run = first_run
             movie.runtime = runtime
+            movie.tv_movie = tv_movie
 
 
             movie.save!

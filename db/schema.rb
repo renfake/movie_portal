@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131021102249) do
+ActiveRecord::Schema.define(:version => 20131028150622) do
 
   create_table "ages", :force => true do |t|
     t.string   "name",       :null => false
@@ -20,12 +20,14 @@ ActiveRecord::Schema.define(:version => 20131021102249) do
   end
 
   create_table "broadcast_upload_issues", :force => true do |t|
-    t.integer  "broadcast_upload_id", :null => false
-    t.integer  "row",                 :null => false
-    t.string   "issue_type",          :null => false
+    t.integer  "broadcast_upload_id",                 :null => false
+    t.integer  "row"
+    t.integer  "column"
+    t.string   "field_name",          :default => ""
+    t.string   "issue_type",                          :null => false
     t.text     "root_cause"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   create_table "broadcast_uploads", :force => true do |t|
@@ -46,14 +48,13 @@ ActiveRecord::Schema.define(:version => 20131021102249) do
     t.integer  "week",                                                                 :null => false
     t.datetime "start_datetime",                                                       :null => false
     t.integer  "movie_id",                                                             :null => false
-    t.decimal  "audience_rating",     :precision => 5, :scale => 2,                    :null => false
-    t.decimal  "audience_share",      :precision => 5, :scale => 2,                    :null => false
-    t.integer  "audience_number",                                                      :null => false
+    t.decimal  "audience_rating",     :precision => 5, :scale => 2
+    t.decimal  "audience_share",      :precision => 5, :scale => 2
+    t.integer  "audience_number"
     t.integer  "time_bucket"
     t.boolean  "premiere",                                          :default => false
-    t.integer  "duration"
     t.string   "status",                                                               :null => false
-    t.string   "come_from",                                                            :null => false
+    t.string   "source",                                                               :null => false
     t.integer  "broadcast_upload_id"
     t.integer  "created_by",                                                           :null => false
     t.integer  "updated_by",                                                           :null => false
@@ -62,6 +63,12 @@ ActiveRecord::Schema.define(:version => 20131021102249) do
   end
 
   create_table "categories", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "channels", :force => true do |t|
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -181,6 +188,38 @@ ActiveRecord::Schema.define(:version => 20131021102249) do
 
   create_table "professions", :force => true do |t|
     t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "program_plan_template_items", :force => true do |t|
+    t.integer  "program_plan_template_id", :null => false
+    t.integer  "day_row",                  :null => false
+    t.integer  "time_bulk",                :null => false
+    t.integer  "day_column",               :null => false
+    t.string   "status",                   :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "program_plan_templates", :force => true do |t|
+    t.string   "name",                                :null => false
+    t.text     "desc"
+    t.string   "status",                              :null => false
+    t.integer  "time_bucket_num",                     :null => false
+    t.string   "unit",            :default => "DAY",  :null => false
+    t.string   "line",            :default => "WEEK", :null => false
+    t.integer  "day_column_num",  :default => 7,      :null => false
+    t.string   "serve_for",                           :null => false
+    t.integer  "day_row_num",                         :null => false
+    t.integer  "channel_id",                          :null => false
+    t.integer  "created_by",                          :null => false
+    t.integer  "updated_by",                          :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
+  create_table "program_plans", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

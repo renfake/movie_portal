@@ -93,6 +93,15 @@
   <%end%>
 </li>
 
+<% if current_user.try(:role?, :admin)%>
+    <li  <%= raw 'class="active"' if controller_name == 'channels' %>>
+      <%= link_to channels_path do %>
+          <i class="icon-edit"></i>
+          <span class="menu-text"> 频道管理 </span>
+      <%end%>
+    </li>
+<%end%>
+
 <li>
   <a href="#" class="dropdown-toggle">
     <i class="icon-edit"></i>

@@ -9,24 +9,24 @@ class CreateBroadcasts < ActiveRecord::Migration
       ## 电影
       t.integer       :movie_id,   :null => false
       ## 收视率
-      t.decimal       :audience_rating, :null => false, :precision => 5, :scale => 2
+      t.decimal       :audience_rating, :null => true, :precision => 5, :scale => 2
       ## 收拾份额
-      t.decimal       :audience_share,  :null => false, :precision => 5, :scale => 2
+      t.decimal       :audience_share,  :null => true, :precision => 5, :scale => 2
       ## 观众人数
-      t.integer       :audience_number,  :null => false
+      t.integer       :audience_number,  :null => true
       ## 时段
       t.integer       :time_bucket,      :null => true
       ## 首播
       t.boolean       :premiere,        :default => false
 
       ## 时长
-      t.integer       :duration,         :null => true
+      #t.integer       :duration,         :null => true
 
       ## 状态: 正式，Draft(由当前的周或未来周的编排表生成)
       t.string        :status,           :null => false
 
       ## 记录生成方式: 手动生成（manual), 导入（upload), 编排表产生(system)
-      t.string        :come_from,        :null => false
+      t.string        :source,        :null => false
 
       ## 记录是导入产生是保存导入ID，便于批量删除
       t.integer       :broadcast_upload_id

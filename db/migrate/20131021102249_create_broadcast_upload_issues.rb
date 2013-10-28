@@ -5,7 +5,10 @@ class CreateBroadcastUploadIssues < ActiveRecord::Migration
       t.integer :broadcast_upload_id, :null => false
 
       ## 行号
-      t.integer :row, :null => false
+      t.integer :row
+      t.integer :column
+
+      t.string :field_name, :default => ''
 
       ## 问题类型： 错误(ERROR)、警告(WARNNING)
       t.string  :issue_type, :null => false
