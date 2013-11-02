@@ -1,4 +1,4 @@
-<div class="breadcrumbs" id="breadcrumbs">
+<div class="breadcrumbs" id="breadcrumbs" style="padding-left: 20px;">
   <script type="text/javascript">
       try {
           ace.settings.check('breadcrumbs', 'fixed')
@@ -6,22 +6,22 @@
       }
   </script>
 
-  <ul class="breadcrumb">
-    <li>
-      <i class="icon-home home-icon"></i>
-      <a href="#">Home</a>
-    </li>
-    <li class="active">Dashboard</li>
-  </ul>
-  <!-- .breadcrumb -->
-
-  <div class="nav-search" id="nav-search">
-    <form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off"/>
-									<i class="icon-search nav-search-icon"></i>
-								</span>
-    </form>
+  <div class="pull-left" style="width: 300px;">
+    <h4><%= yield :title%>
+      <%if content_for? :sub_title%>
+      <small>
+        <i class="icon-double-angle-right"></i>
+        <%= content_for :sub_title%>
+      </small>
+      <%end%>
+    </h4>
   </div>
-  <!-- #nav-search -->
+  <div class="top_toolbox">
+    <%= content_for :top_toolbox %>
+  </div>
+
+  <div style="position: absolute; top: 6px; right: 22px; line-height: 24px">
+    <%= content_for :top_toolbox_right%>
+  </div>
+
 </div>

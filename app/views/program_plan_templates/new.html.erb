@@ -1,0 +1,68 @@
+<%
+   content_for :title do
+     '节目编排'
+   end
+
+   content_for :sub_title do
+     '新建编排模板'
+   end
+
+%>
+
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+    <%= form_for @template, :html => {:class => 'form-horizontal', :role => 'form' } do |form| %>
+        <div class="form-group">
+          <%= form.label :name, '名称', :class => 'col-sm-3 control-label no-padding-right' %>
+          <div class="col-sm-9">
+            <%= form.text_field :name, :class => 'col-xs-10 col-sm-5', :placeholder => '编排模板名称'%>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= form.label :desc, '描述', :class => 'col-sm-3 control-label no-padding-right' %>
+          <div class="col-sm-9">
+            <%= form.text_area :desc, :class => 'col-xs-10 col-sm-5', :style => 'overflow: hidden; word-wrap: break-word; resize: horizontal; height: 92px;'%>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :channel_id, '频道', :class => 'col-sm-3 control-label no-padding-right' %>
+          <div class="col-sm-9">
+            <%= form.select  :channel_id, Channel.all.collect{|c| [c.name, c.id] }, {}, :class => 'col-xs-10 col-sm-5' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :period, '编排周期', :class => 'col-sm-3 control-label no-padding-right' %>
+          <div class="col-sm-9">
+            <%= form.select  :period, [['周', 'WEEK'],['月', 'MONTH']], {}, :class => 'col-xs-10 col-sm-5' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :time_bucket_num, '时段数', :class => 'col-sm-3 control-label no-padding-right' %>
+          <div class="col-sm-9">
+            <%= form.text_field :time_bucket_num, :class => 'col-xs-10 col-sm-5' %>
+          </div>
+        </div>
+
+        <div class="clearfix form-actions">
+          <div class="col-md-offset-3 col-md-9">
+            <button type="submit" class="btn btn-info">
+              <i class="icon-ok bigger-110"></i>
+              新建
+            </button>
+
+            &nbsp; &nbsp; &nbsp;
+            <button type="reset" class="btn">
+              <i class="icon-undo bigger-110"></i>
+              重置
+            </button>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->

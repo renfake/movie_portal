@@ -1,16 +1,21 @@
-<% content_for :title do
-  '节目编排'
-end %>
+<%
+   content_for :title do
+     '节目编排'
+   end
 
-<div class="page-header">
-  <h1>节目编排
-    <small>
-      <i class="icon-double-angle-right"></i>
-      编排模板
-    </small>
-  </h1>
-</div>
+   content_for :sub_title do
+     '编排模板'
+   end
 
+%>
+
+<% content_for :top_toolbox do %>
+    <%= link_to new_program_plan_template_path, :class => 'btn btn-xs btn-info' do %>
+        <i class="icon-plus"></i>
+        添加
+    <% end %>
+
+<% end %>
 <div class="row">
   <div class="col-xs-12">
     <!-- PAGE CONTENT BEGINS -->
@@ -20,11 +25,11 @@ end %>
       <th>名称</th>
       </thead>
       <tbody>
-      <% @templates.each do |template|%>
+      <% @templates.each do |template| %>
           <tr>
-            <td><%= template.name%></td>
+            <td><%= template.name %></td>
           </tr>
-      <%end%>
+      <% end %>
       </tbody>
     </table>
   </div>

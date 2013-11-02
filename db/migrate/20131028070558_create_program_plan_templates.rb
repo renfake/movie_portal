@@ -16,8 +16,8 @@ class CreateProgramPlanTemplates < ActiveRecord::Migration
       t.integer :day_column_num,      :null => false, :default => 7
       t.integer :day_row_num,         :null => false
 
-      ## 用途
-      t.string  :serve_for, :null => false
+      ## 周期
+      t.string  :period,         :null => false, :default => 'WEEK'
 
       ## 频道
       t.integer :channel_id, :null => false

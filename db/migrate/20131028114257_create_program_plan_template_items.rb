@@ -8,6 +8,7 @@ class CreateProgramPlanTemplateItems < ActiveRecord::Migration
       t.integer :day_column,   :null => false
 
       t.string  :status,       :null => false
+      t.string  :note
 
       t.timestamps
     end

@@ -52,12 +52,15 @@ MoviePortal::Application.routes.draw do
   match 'movies/import' => 'movies#import', :via => [:get], :as => 'movie_import'
   match 'movies/import' => 'movies#process_import', :via => [:post], :as => 'movie_import'
 
+  match 'program_plan_templates/:id/config' => 'program_plan_templates#item_config', :via => [:get], :as => 'program_plan_template_config'
+
   resources :movies
   resources :broadcasts
   resources :broadcast_uploads
   resources :scores
   resources :channels
   resources :program_plan_templates
+  resources :program_plan_template_items
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

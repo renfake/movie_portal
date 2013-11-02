@@ -1,0 +1,195 @@
+<%
+   content_for :title do
+     '节目编排'
+   end
+
+   content_for :sub_title do
+     '编排模板'
+   end
+
+%>
+<% content_for :inline_style_for_page do %>
+    <style>
+        #program-plan-template-items thead th {
+            text-align: center;
+            background: none repeat scroll 0 0 #ECF2F7;
+            color: #8090A0;
+        }
+
+        #program-plan-template-items tbody td {
+            padding: 0;
+        }
+
+        .time-bucket {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .template-item.current {
+            background-color: #00BE67;
+        }
+
+        .item-tools {
+            background-color: rgba(0, 0, 0, 0.55);
+            bottom: 0;
+            left: -30px;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            /*transition: all 0.2s ease 0s;*/
+            vertical-align: middle;
+            width: 24px;
+            display: none;
+        }
+
+        .item-tools.item-tools-right {
+            /*bottom: -30px;*/
+            left: auto;
+            right: 0;
+
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+
+        .item-tools.item-tools-right a {
+            color: #FFFFFF;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: normal;
+            padding: 0 4px;
+        }
+
+        .template-item .item-tools-right a.unlock {
+            display: none;
+        }
+
+        .template-item.locked {
+            background-color: #595C66;
+        }
+
+        .template-item.locked .item-tools-right a.lock {
+           display: none;
+        }
+
+        .template-item .item-tools-right a.lock {
+            display: inline;
+        }
+
+        .template-item.locked .item-tools-right a.unlock {
+            display: inline;
+        }
+    </style>
+<% end %>
+<div class="row">
+  <div class="col-xs-12">
+    <!-- PAGE CONTENT BEGINS -->
+    <table class="table table-bordered" id="program-plan-template-items">
+      <thead>
+      <tr>
+        <th style="width: 50px;">时段</th>
+        <th style="width: 100px;">缺省开始时间</th>
+        <th>周一</th>
+        <th>周二</th>
+        <th>周三</th>
+        <th>周四</th>
+        <th>周五</th>
+        <th>周六</th>
+        <th>周日</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @template.day_row_num.times do |row| %>
+          <% @template.time_bucket_num.times do |time_buck| %>
+              <tr>
+                <td class="time-bucket template-item"><%= time_buck + 1 %></td>
+                <td class="template-item"></td>
+                <% @template.day_column_num.times do |column| %>
+                    <% item = @template.items_hash[row][column][time_buck] %>
+                    <td class="template-item <%= 'locked' if item && item.status == 'LOCKED' %>" data-row="<%=row%>" data-column="<%=column%>" data-time-bucket="<%=time_buck%>">
+                      <div style="min-height: 70px; position: relative; overflow: hidden;">
+
+                        <div class="item-tools item-tools-right">
+                          <a href="#">
+                            <i class="icon-pencil"></i>
+                          </a>
+
+                          <a class='lock' href="#">
+                            <i class="fa fa-lock red"></i>
+                          </a>
+
+                          <a class='unlock' href="#">
+                            <i class="fa fa-unlock green"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </td>
+                <% end %>
+
+
+              </tr>
+          <% end %>
+      <% end %>
+      </tbody>
+    </table>
+
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->
+
+
+<% content_for :customer_js_for_page do %>
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            $('a.lock').click(function(){
+                var item = $(this).parents('td.template-item');
+                var row = item.attr('data-row');
+                var column = item.attr('data-column');
+                var timeBucket = item.attr('data-time-bucket');
+
+                item.addClass('locked');
+
+            });
+
+            $('a.unlock').click(function(){
+                var item = $(this).parents('td.template-item');
+                var row = item.attr('data-row');
+                var column = item.attr('data-column');
+                var timeBucket = item.attr('data-time-bucket');
+
+                item.removeClass('locked');
+
+            });
+
+
+            $('.template-item').mouseover(function () {
+                $(this).addClass('current');
+                var tools = $(this).find('.item-tools');
+                if (tools) {
+
+
+                    tools.show();
+                    //tools.slideUp();
+                }
+
+
+            });
+
+            $('.template-item').mouseout(function () {
+                $(this).removeClass('current');
+
+                var tools = $(this).find('.item-tools');
+                if (tools) {
+
+                    tools.hide();
+
+                    //tools.slideUp();
+                }
+            });
+
+        });
+    </script>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131028150622) do
+ActiveRecord::Schema.define(:version => 20131102132751) do
 
   create_table "ages", :force => true do |t|
     t.string   "name",       :null => false
@@ -202,16 +202,24 @@ ActiveRecord::Schema.define(:version => 20131028150622) do
     t.datetime "updated_at",               :null => false
   end
 
+  create_table "program_plan_template_time_buckets", :force => true do |t|
+    t.integer  "program_plan_template_id", :null => false
+    t.integer  "time_bucket",              :null => false
+    t.time     "default_time"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
   create_table "program_plan_templates", :force => true do |t|
     t.string   "name",                                :null => false
     t.text     "desc"
     t.string   "status",                              :null => false
     t.integer  "time_bucket_num",                     :null => false
     t.string   "unit",            :default => "DAY",  :null => false
-    t.string   "line",            :default => "WEEK", :null => false
+    t.string   "line_unit",       :default => "WEEK", :null => false
     t.integer  "day_column_num",  :default => 7,      :null => false
-    t.string   "serve_for",                           :null => false
     t.integer  "day_row_num",                         :null => false
+    t.string   "period",          :default => "WEEK", :null => false
     t.integer  "channel_id",                          :null => false
     t.integer  "created_by",                          :null => false
     t.integer  "updated_by",                          :null => false

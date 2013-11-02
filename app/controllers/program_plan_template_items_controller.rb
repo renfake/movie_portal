@@ -1,0 +1,2 @@
+class ProgramPlanTemplateItemsController < ApplicationController
+end
