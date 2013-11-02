@@ -45,11 +45,24 @@
   </a>
 </li>
 
-<li>
-  <a href="typography.html">
+<li <%= raw 'class="active open"' if controller_name.start_with? 'program_plan' %>>
+  <a href="#" class="dropdown-toggle">
     <i class="icon-text-width"></i>
-    <span class="menu-text"> 编排单 </span>
+    <span class="menu-text"> 节目编排 </span>
+
+    <b class="arrow icon-angle-down"></b>
   </a>
+  <ul class="submenu">
+    <% if current_user.try(:role?, :admin) %>
+        <li <%= raw 'class="active"' if controller_name == 'program_plan_templates' %>>
+          <%= link_to program_plan_templates_path do %>
+              <i class="icon-double-angle-right"></i>
+              编排模板<span class="label label-warning arrowed arrowed-in-right">admin</span>
+          <% end %>
+        </li>
+    <% end %>
+
+  </ul>
 </li>
 
 <li <%= raw 'class="active open"' if  %w(broadcasts, broadcast_uploads).include? controller_name %>>
@@ -65,22 +78,22 @@
       <%= link_to broadcasts_path do -%>
           <i class="icon-double-angle-right"></i>
           <span class="menu-text"> 计划播出 </span>
-      <%end%>
+      <% end %>
     </li>
     <li <%= raw 'class="active"' if controller_name == 'broadcasts' && action_name == 'index' %> >
       <%= link_to broadcasts_path do -%>
           <i class="icon-double-angle-right"></i>
           <span class="menu-text"> 历史记录 </span>
-      <%end%>
-    </li>
-
-    <% if current_user.try(:role?, :admin)%>
-    <li <%= raw 'class="active"' if controller_name == 'broadcast_uploads' && action_name == 'index' %>>
-      <%= link_to broadcast_uploads_path do %>
-        <i class="icon-double-angle-right"></i>
-        导入<span class="label label-warning arrowed arrowed-in-right">admin</span>
       <% end %>
     </li>
+
+    <% if current_user.try(:role?, :admin) %>
+        <li <%= raw 'class="active"' if controller_name == 'broadcast_uploads' && action_name == 'index' %>>
+          <%= link_to broadcast_uploads_path do %>
+              <i class="icon-double-angle-right"></i>
+              导入<span class="label label-warning arrowed arrowed-in-right">admin</span>
+          <% end %>
+        </li>
     <% end %>
   </ul>
 
@@ -90,17 +103,17 @@
   <%= link_to movies_path do %>
       <i class="icon-list"></i>
       <span class="menu-text"> 影片 </span>
-  <%end%>
+  <% end %>
 </li>
 
-<% if current_user.try(:role?, :admin)%>
+<% if current_user.try(:role?, :admin) %>
     <li  <%= raw 'class="active"' if controller_name == 'channels' %>>
       <%= link_to channels_path do %>
           <i class="icon-edit"></i>
           <span class="menu-text"> 频道管理 </span>
-      <%end%>
+      <% end %>
     </li>
-<%end%>
+<% end %>
 
 <li>
   <a href="#" class="dropdown-toggle">

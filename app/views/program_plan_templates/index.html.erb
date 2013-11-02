@@ -1,9 +1,13 @@
 <% content_for :title do
-  '频道管理'
+  '节目编排'
 end %>
 
 <div class="page-header">
-  <h1>频道管理
+  <h1>节目编排
+    <small>
+      <i class="icon-double-angle-right"></i>
+      编排模板
+    </small>
   </h1>
 </div>
 
@@ -16,10 +20,10 @@ end %>
       <th>名称</th>
       </thead>
       <tbody>
-      <% @channels.each do |channel|%>
-       <tr>
-         <td><%= channel.name%></td>
-       </tr>
+      <% @templates.each do |template|%>
+          <tr>
+            <td><%= template.name%></td>
+          </tr>
       <%end%>
       </tbody>
     </table>
